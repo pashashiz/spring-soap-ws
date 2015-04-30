@@ -5,6 +5,8 @@
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:tns="http://ps.com/tutorial/model/country">
 
+  <xs:include schemaLocation="../currency.xsd"/>
+
   <xs:element name="getCountryRequest">
     <xs:complexType>
       <xs:sequence>
@@ -29,13 +31,5 @@
       <xs:element type="tns:currency" name="currency"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:simpleType name="currency">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="UAH"/>
-      <xs:enumeration value="EUR"/>
-      <xs:enumeration value="USD"/>
-    </xs:restriction>
-  </xs:simpleType>
 
 </xs:schema>
