@@ -2,10 +2,17 @@
 <xs:schema attributeFormDefault="unqualified"
            elementFormDefault="qualified"
            targetNamespace="http://ps.com/tutorial/model/country"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="http://ps.com/tutorial/model/country">
+           xmlns:ctn="http://ps.com/tutorial/model/currency"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../currency.xsd"/>
+  <xs:complexType name="country">
+    <xs:sequence>
+      <xs:element type="xs:string" name="name"/>
+      <xs:element type="xs:int" name="population"/>
+      <xs:element type="xs:string" name="capital"/>
+      <xs:element type="ctn:currency" name="currency"/>
+    </xs:sequence>
+  </xs:complexType>
 
   <xs:element name="getCountryRequest">
     <xs:complexType>
@@ -18,18 +25,9 @@
   <xs:element name="getCountryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element type="tns:country" name="country"/>
+        <xs:element type="country" name="country"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-
-  <xs:complexType name="country">
-    <xs:sequence>
-      <xs:element type="xs:string" name="name"/>
-      <xs:element type="xs:int" name="population"/>
-      <xs:element type="xs:string" name="capital"/>
-      <xs:element type="tns:currency" name="currency"/>
-    </xs:sequence>
-  </xs:complexType>
 
 </xs:schema>
