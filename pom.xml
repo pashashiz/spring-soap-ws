@@ -10,10 +10,12 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>simple-service</module>
+        <module>simple-client</module>
     </modules>
 
     <properties>
         <spring.ws.version>2.2.1.RELEASE</spring.ws.version>
+        <spring.version>4.0.9.RELEASE</spring.version>
         <log4j.version>1.2.17</log4j.version>
         <junit.version>4.12</junit.version>
     </properties>
@@ -32,6 +34,16 @@
             <version>${log4j.version}</version>
         </dependency>
         <!-- Testing -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-test</artifactId>
+            <version>${spring.ws.version}</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
