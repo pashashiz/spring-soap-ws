@@ -1,5 +1,6 @@
-package com.ps.tutorial;
+package com.ps.tutorial.services;
 
+import com.ps.tutorial.WSConfig;
 import com.ps.tutorial.model.country.GetCountryRequest;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,7 +48,7 @@ public class CountryEndpointTest {
                 .andExpect(xpath("//cns:country/cns:name", ns).evaluatesTo("Ukraine"));
     }
 
-    private JAXBSource getSource(Class clazz, GetCountryRequest request) throws JAXBException {
+    private <T> JAXBSource getSource(Class<T> clazz, T request) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
         return new JAXBSource(jaxbContext, request);
     }

@@ -1,8 +1,8 @@
 package com.ps.tutorial.clients;
 
 import com.ps.tutorial.model.country.Country;
-import com.ps.tutorial.model.country.GetCountryRequest;
 import com.ps.tutorial.model.country.GetCountryResponse;
+import com.ps.tutorial.model.country.GetCountryRequest;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
 public class CountryClient extends WebServiceGatewaySupport {

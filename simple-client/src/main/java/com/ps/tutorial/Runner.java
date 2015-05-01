@@ -1,7 +1,7 @@
 package com.ps.tutorial;
 
-import com.ps.tutorial.clients.CountryClient;
 import com.ps.tutorial.model.country.Country;
+import com.ps.tutorial.clients.CountryClient;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
