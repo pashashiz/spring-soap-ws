@@ -36,6 +36,11 @@
             <param-name>transformWsdlLocations</param-name>
             <param-value>true</param-value>
         </init-param>
+        <!-- Enable transforming of Schema locations -->
+        <init-param>
+            <param-name>transformSchemaLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
         <!-- Again, config locations must consist of one or more comma- or space-delimited
             and fully-qualified @Configuration classes -->
         <init-param>
@@ -48,4 +53,10 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <!-- Resources -->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/resources/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -2,7 +2,7 @@ package com.ps.tutorial.clients;
 
 import com.ps.tutorial.ClientConfig;
 import com.ps.tutorial.model.country.Country;
-import com.ps.tutorial.model.country.Currency;
+import com.ps.tutorial.model.currency.Currency;
 import com.ps.tutorial.model.country.GetCountryRequest;
 import com.ps.tutorial.model.country.GetCountryResponse;
 import org.junit.Before;

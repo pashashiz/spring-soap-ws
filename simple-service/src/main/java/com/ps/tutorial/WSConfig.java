@@ -1,28 +1,43 @@
 package com.ps.tutorial;
 
 import com.ps.tutorial.interceptors.GlobalInterceptor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.server.EndpointInterceptor;
 import org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor;
+import org.springframework.ws.transport.http.WsdlDefinitionHandlerAdapter;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
 import org.springframework.xml.xsd.XsdSchemaCollection;
 import org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection;
 
-import java.io.IOException;
 import java.util.List;
 
 @EnableWs
 @Configuration
 @ComponentScan({"com.ps.tutorial.repository", "com.ps.tutorial.services"})
 public class WSConfig extends WsConfigurerAdapter {
+
+//    @Bean
+//    WsdlDefinitionHandlerAdapter wsdlDefinitionHandlerAdapter() {
+//        WsdlDefinitionHandlerAdapter adapter = new WsdlDefinitionHandlerAdapter();
+//        adapter.setTransformLocations(true);
+//        adapter.setTransformSchemaLocations(true);
+//        return adapter;
+//    }
+
+    @Bean WsdlDefinitionPostProcessor wsdlDefinitionPostProcessor() {
+        return new WsdlDefinitionPostProcessor();
+    }
 
     @Override
     public void addInterceptors(List<EndpointInterceptor> interceptors) {
@@ -38,17 +53,23 @@ public class WSConfig extends WsConfigurerAdapter {
         wsdl11Definition.setPortTypeName("CountriesPort");
         wsdl11Definition.setLocationUri("/country");
         wsdl11Definition.setTargetNamespace("http://ps.com/tutorial/model/country");
-        //wsdl11Definition.setSchema(new SimpleXsdSchema(new ClassPathResource("schemes/ws/country.xsd")));
+        //wsdl11Definition.setSchema(countrySchema);
         wsdl11Definition.setSchemaCollection(countrySchemas);
         return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchemaCollection countrySchemas() {
+    public XsdSchemaCollection countrySchemas(@Value("resources/schemes/currency.xsd")Resource currency,
+                                              @Value("resources/schemes/ws/country.xsd")Resource country) {
         // Should be correct order: currency, country (because country imports currency)
         return new CommonsXsdSchemaCollection(new Resource[] {
-                new ClassPathResource("schemes/currency.xsd"), new ClassPathResource("schemes/ws/country.xsd")
+                currency, country
         });
     }
+
+//    @Bean
+//    public XsdSchema countrySchema(@Value("resources/schemes/ws/country.xsd")Resource schema) {
+//        return new SimpleXsdSchema(schema);
+//    }
 
 }

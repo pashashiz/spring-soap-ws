@@ -6,7 +6,7 @@
 //
 
 
-package com.ps.tutorial.model.country;
+package com.ps.tutorial.model.currency;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the com.ps.tutorial.model.country package. 
+ * generated in the com.ps.tutorial.model.currency package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -30,34 +30,10 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.ps.tutorial.model.country
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.ps.tutorial.model.currency
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link GetCountryRequest }
-     * 
-     */
-    public GetCountryRequest createGetCountryRequest() {
-        return new GetCountryRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetCountryResponse }
-     * 
-     */
-    public GetCountryResponse createGetCountryResponse() {
-        return new GetCountryResponse();
-    }
-
-    /**
-     * Create an instance of {@link Country }
-     * 
-     */
-    public Country createCountry() {
-        return new Country();
     }
 
 }

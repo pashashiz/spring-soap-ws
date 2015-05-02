@@ -1,7 +1,7 @@
 package com.ps.tutorial.repository;
 
 import com.ps.tutorial.model.country.Country;
-import com.ps.tutorial.model.country.Currency;
+import com.ps.tutorial.model.currency.Currency;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
