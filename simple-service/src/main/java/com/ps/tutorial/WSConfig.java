@@ -27,18 +27,6 @@ import java.util.List;
 @ComponentScan({"com.ps.tutorial.repository", "com.ps.tutorial.services"})
 public class WSConfig extends WsConfigurerAdapter {
 
-//    @Bean
-//    WsdlDefinitionHandlerAdapter wsdlDefinitionHandlerAdapter() {
-//        WsdlDefinitionHandlerAdapter adapter = new WsdlDefinitionHandlerAdapter();
-//        adapter.setTransformLocations(true);
-//        adapter.setTransformSchemaLocations(true);
-//        return adapter;
-//    }
-
-    @Bean WsdlDefinitionPostProcessor wsdlDefinitionPostProcessor() {
-        return new WsdlDefinitionPostProcessor();
-    }
-
     @Override
     public void addInterceptors(List<EndpointInterceptor> interceptors) {
         // Custom interceptor
@@ -48,28 +36,28 @@ public class WSConfig extends WsConfigurerAdapter {
     }
 
     @Bean(name = "country")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchemaCollection countrySchemas) {
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countrySchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("CountriesPort");
         wsdl11Definition.setLocationUri("/country");
         wsdl11Definition.setTargetNamespace("http://ps.com/tutorial/model/country");
-        //wsdl11Definition.setSchema(countrySchema);
-        wsdl11Definition.setSchemaCollection(countrySchemas);
+        wsdl11Definition.setSchema(countrySchema);
+        //wsdl11Definition.setSchemaCollection(countrySchemas);
         return wsdl11Definition;
     }
 
-    @Bean
-    public XsdSchemaCollection countrySchemas(@Value("resources/schemes/currency.xsd")Resource currency,
-                                              @Value("resources/schemes/ws/country.xsd")Resource country) {
-        // Should be correct order: currency, country (because country imports currency)
-        return new CommonsXsdSchemaCollection(new Resource[] {
-                currency, country
-        });
-    }
-
 //    @Bean
-//    public XsdSchema countrySchema(@Value("resources/schemes/ws/country.xsd")Resource schema) {
-//        return new SimpleXsdSchema(schema);
+//    public XsdSchemaCollection countrySchemas(@Value("resources/schemes/currency.xsd")Resource currency,
+//                                              @Value("resources/schemes/ws/country.xsd")Resource country) {
+//        // Should be correct order: currency, country (because country imports currency)
+//        return new CommonsXsdSchemaCollection(new Resource[] {
+//                currency, country
+//        });
 //    }
+
+    @Bean
+    public XsdSchema countrySchema(@Value("resources/schemes/ws/country.xsd")Resource schema) {
+        return new SimpleXsdSchema(schema);
+    }
 
 }
